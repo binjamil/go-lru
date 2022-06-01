@@ -71,3 +71,31 @@ func (c *LRU[K, V]) Get(key K) (val V, ok bool) {
 	}
 	return
 }
+
+// Contains checks if the specified key is present in the LRU
+// without updating the "recently used"-ness of the key.
+func (c *LRU[K, V]) Contains(key K) bool {
+	c.lock.Lock()
+	defer c.lock.Unlock()
+	_, ok := c.items[key]
+	return ok
+}
+
+// Len returns the length of the LRU.
+func (c *LRU[K, V]) Len() uint {
+	c.lock.Lock()
+	defer c.lock.Unlock()
+	return c.evictList.Len()
+}
+
+// Remove removes the specified key and returns if the key was present.
+func (c *LRU[K, V]) Remove(key K) (present bool) {
+	c.lock.Lock()
+	defer c.lock.Unlock()
+	if el, ok := c.items[key]; ok {
+		c.evictList.Remove(el)
+		delete(c.items, key)
+		return ok
+	}
+	return false
+}
