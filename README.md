@@ -18,19 +18,19 @@ go get github.com/binjamil/go-lru
 import "github.com/binjamil/go-lru"
 
 func Consumer() {
-	lru, err := lru.New[int, string](69)
-	if err != nil {
-		panic(err)
-	}
+    lru, err := lru.New[int, string](69)
+    if err != nil {
+        panic(err)
+    }
 
-	for i := 0; i < 69; i++ {
-		lru.Add(i, "Lalo Salamanca") // Type-safe Add
-	}
+    for i := 0; i < 69; i++ {
+        lru.Add(i, "Lalo Salamanca") // Type-safe Add
+    }
 
-	var val string
-	val, ok := lru.Get(0) // Type-safe Get
-	if ok {
-		println(val)
-	}
+    var val string
+    val, ok := lru.Get(0) // Type-safe Get
+    if ok {
+        println(val)
+    }
 }
 ```
