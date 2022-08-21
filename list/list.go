@@ -1,4 +1,4 @@
-// Package list implements a circular doubly linked list.
+// Package list implements a generic doubly linked list.
 //
 // To iterate over a list (where l is a *List):
 //	for e := l.Front(); e != nil; e = e.Next() {
