@@ -2,7 +2,7 @@
 //
 // - O(1) Add, Get, Contains and Remove
 // - Generic implementation for better type-safety
-// - Thread-safe operations
+// - Thread-safe operations via mutexes
 //
 // LRU is implemented via a generic doubly linked list, available in package
 // "github.com/binjamil/go-lru/list"
